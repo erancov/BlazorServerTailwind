@@ -7,13 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<UpToDateCheckBuilt Include="wwwroot/css/site.css" Set="Css" />
-	<UpToDateCheckBuilt Include="Npm/postcss.config.js" Set="Css" />
-	<UpToDateCheckBuilt Include="Npm/tailwind.config.js" Set="Css" />
+    <Compile Remove="Npm\**" />
+    <Content Remove="Npm\**" />
+    <EmbeddedResource Remove="Npm\**" />
+    <None Remove="Npm\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Npm\" />
+	<UpToDateCheckBuilt Include="wwwroot/css/app.css" Set="Css" />
+	<UpToDateCheckBuilt Include="tailwind.config.js" Set="Css" />
   </ItemGroup>
 
   <Target Name="Tailwind" BeforeTargets="Build">
