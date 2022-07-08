@@ -1,7 +1,14 @@
 module.exports = {
     content: ['./*/*.{razor,html,cshtml}'],
   theme: {
-    extend: {},
+      extend: {
+          height: {
+              'top-bottom': 'calc(100vh - 3.5rem)'
+          }
+
+      },
   },
-  plugins: [],
+    plugins: [
+        require('@tailwindcss/typography')
+    ],
 }

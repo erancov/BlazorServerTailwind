@@ -2,18 +2,22 @@
 
 <PageTitle>BlazorServerTailwind</PageTitle>
 
-<div class="w-full h-screen bg-green-600">
-    <div class="sidebar">
-        <NavMenu />
+<div class="w-full h-full bg-gray-100">
+
+    <div class="w-full shadow-md h-14 flex items-center justify-between px-4">
+        <a  href="">BlazorServerTailwind</a>
+        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
     </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-        </div>
+    
 
-        <article class="content px-4">
-            @Body
-        </article>
+    <main class="flex relative">
+        <div class="h-top-bottom w-full md:w-60 bg-gradient-to-b from-teal-500 to-fuchsia-300 shadow-md absolute inset-0 md:static">
+        <NavMenu />
+    </div>
+    <div class="p-4">
+        @Body
+    </div>
+        
     </main>
 </div>
