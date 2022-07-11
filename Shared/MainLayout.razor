@@ -4,20 +4,32 @@
 
 <div class="w-full h-full bg-gray-100">
 
-    <div class="w-full shadow-md h-14 flex items-center justify-between px-4">
+    <div aria-label="topbar" class="w-full shadow-md h-14 flex items-center justify-between px-4 bg-white ">
         <a  href="">BlazorServerTailwind</a>
-        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        <a href="https://docs.microsoft.com/aspnet/" target="_blank" class="hidden md:block">About</a>
+        <button @onclick="@ToggleSideBar" type="button" class="border bg-white p-2 rounded md:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+</svg>
+        </button>
     </div>
 
     
 
-    <main class="flex relative">
-        <div class="h-top-bottom w-full md:w-60 bg-gradient-to-b from-teal-500 to-fuchsia-300 shadow-md absolute inset-0 md:static">
-        <NavMenu />
-    </div>
+    <main class="flex md:relative">
+        <NavMenu @ref="navRef"/>
     <div class="p-4">
         @Body
     </div>
         
     </main>
 </div>
+
+@code {
+    private NavMenu navRef;
+
+    private async Task ToggleSideBar()
+    {
+        await navRef.ToggleNavBar();
+    }
+}

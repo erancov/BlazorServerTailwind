@@ -1,24 +1,40 @@
-﻿<aside class="w-full" aria-label="Sidebar">
-   <div class="overflow-y-auto py-4 px-3">
-      <ul class="space-y-2">
-         <li>
-            <NavLink class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" ActiveClass="bg-gray-100" href="" Match="NavLinkMatch.All">
-               <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-               <span class="ml-3">Home</span>
-            </NavLink>
-         </li>
-          <li>
-            <NavLink class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" ActiveClass="bg-gray-100" href="counter">
-               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
-               <span class="ml-3">Counter</span>
-            </NavLink>
-         </li>
-         <li>
-            <NavLink class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" ActiveClass="bg-gray-100" href="fetchdata">
-               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
-               <span class="ml-3">Fetch data</span>
-            </NavLink>
-         </li>
-      </ul>
-   </div>
-</aside>
+﻿<div class="h-screen md:h-top-bottom w-full md:w-60 bg-gradient-to-b md:relative from-teal-500 to-fuchsia-300 shadow-md absolute inset-0 md:static transition-all duration-300 ease-in-out @( !isExpanded ? "-translate-x-full md:translate-x-0 md:w-[64px]" : "" )">
+    <div class="flex justify-end p-4 md:p-0">
+        <button type="button" class="md:hidden cursor-pointer" @onclick="@ToggleNavBar">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+</svg>
+        </button>
+         <button type="button" class="hidden md:block cursor-pointer text-fuchsia-300 md:absolute md:-right-3 md:top-4 rounded-full border border-fuchsia-300 bg-white p-1" @onclick="@ToggleNavBar">
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4  @( isExpanded ? "" : "rotate-180 duration-300" )" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+</svg>        </button>
+    </div>
+    <div class="flex justify-center md:hidden">
+        <p>BlazorServerTailwind</p>
+    </div>
+    <aside class="w-full overflow-x-hidden expanded-sidebar:bg-red-200 pt-4 md:pt-6" aria-label="Sidebar">
+       <div class="overflow-y-auto py-4 px-3">
+          <ul class="space-y-2 overflow-x-hidden">
+             <li>
+                <NavLink class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" ActiveClass="bg-gray-100" href="" Match="NavLinkMatch.All">
+                   <svg class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                   <span class="ml-3 @showItems">Home @isExpanded</span>
+                </NavLink>
+             </li>
+              <li>
+                <NavLink class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" ActiveClass="bg-gray-100" href="counter">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" /></svg>
+                   <span class="ml-3 @showItems">Counter</span>
+                </NavLink>
+             </li>
+             <li>
+                <NavLink class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" ActiveClass="bg-gray-100" href="fetchdata">
+                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" /></svg>
+                   <span class="ml-3 @showItems">Fetch data</span>
+                </NavLink>
+             </li>
+          </ul>
+       </div>
+    </aside>
+</div>
